@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Anggar & Erni</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database-compat.js"></script>
+    
+    <style>
+    /* EVENT CAPSULE PANJANG */
+
+.section-event{
+    padding:80px 20px;
+    display:flex;
+    justify-content:center;
+}
+
+.event-capsule{
+    width:90%;
+    padding:130px 40px; /* bikin lebih tinggi */
+    border-radius:200px; /* lebih lonjong */
+    margin:60px auto; /* jarak atas bawah */
+    
+    position:relative;
+    overflow:hidden;
+
+    background-image:url('https://courageous-azure-crkcs0802s.edgeone.app/IMG-20260119-WA0002.jpg');
+    background-size:cover;
+    background-position:center;
+
+    box-shadow:0 15px 40px rgba(0,0,0,0.4);
+}
+
+/* overlay maroon */
+
+.event-capsule::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(122,18,18,0.75);
+}
+
+.event-content{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    color:white;
+}
+
+.event-box{
+    margin-bottom:90px;
+}
+
+.event-box h3{
+    font-family:var(--font-serif);
+    font-size:1.5rem;
+    margin-bottom:8px;
+}
+
+.event-box p{
+    font-size:0.9rem;
+}
+
+.event-divider{
+    width:60px;
+    height:1px;
+    background:white;
+    margin:30px auto;
+}
+    /* CARD EVENT LONJONG PANJANG */
+.event-wrapper{
+    width: 100%;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.event-long-card{
+    width: 90%; /* kasih space kanan kiri */
+    border-radius: 60px; /* lonjong */
+    padding: 35px 25px;
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+    background-image: url('https://courageous-azure-crkcs0802s.edgeone.app/IMG-20260119-WA0002.jpg');
+    background-size: cover;
+    background-position: center;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* overlay maroon transparan */
+.event-long-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background: rgba(122,18,18,0.75);
+}
+
+/* isi card */
+.event-content{
+    position:relative;
+    z-index:2;
+}
+
+.event-item{
+    margin-bottom:25px;
+}
+
+.event-item h3{
+    font-family: var(--font-serif);
+    font-size:1.2rem;
+    margin-bottom:5px;
+}
+
+.event-item p{
+    font-size:0.8rem;
+    opacity:0.9;
+}
+
+.event-divider{
+    width:50px;
+    height:1px;
+    background:white;
+    margin:20px auto;
+    opacity:0.5;
+}
+        :root {
+            --font-nama: 'Great Vibes', cursive;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Montserrat', sans-serif;
+            --maroon: #5A0F0F;
+            --cream: #fcfaf7;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #111; overflow-x: hidden; display: flex; flex-direction: column; align-items: center; }
+        .container { width: 100vw; max-width: 450px; position: relative; background-color: var(--cream); box-shadow: 0 0 50px rgba(0,0,0,0.5); }
+        .section { position: relative; width: 100%; height: 100vh; overflow: hidden; }
+        html, body {
+    max-width: 100%;
+    overflow-x: hidden; /* Mengunci pergerakan horizontal */
+    position: relative;
+    touch-action: pan-y; /* Hanya izinkan scroll atas-bawah */
+}
+
+.container {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    overflow-x: hidden; /* Kunci tambahan di level kontainer */
+    position: relative;
+}
+
+/* Pastikan section profile tidak bocor keluar */
+.section-profile {
+    width: 100%;
+    overflow: hidden; 
+    position: relative;
+}
+
+        /* REVISI SLIDE 1 COVER */
+#slide-1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    /* Menjadikan foto anda sebagai latar belakang utama */
+    background-image: url('https://courageous-azure-crkcs0802s.edgeone.app/IMG-20260119-WA0002.jpg');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+/* Lapisan untuk menjadikan latar belakang sedikit gelap */
+#slide-1::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    /* rgba(0,0,0, 0.5) memberikan kesan gelap (0.5 boleh dilaras) */
+    background: rgba(0, 0, 0, 0.5); 
+    z-index: 1;
+}
+
+.main-frame {
+    width: 75%;
+    height: 70vh;
+    border: 1.5px solid var(--maroon);
+    border-radius: 25px;
+    position: relative;
+    z-index: 2; /* Supaya bingkai berada di atas latar belakang yang gelap */
+    /* Foto di tengah boleh dikekalkan atau dikosongkan jika mahu telus */
+    background-image: url('https://courageous-azure-crkcs0802s.edgeone.app/IMG-20260119-WA0002.jpg'); 
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.cover-content {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 90%;
+    margin-top: 200px; /* Posisi tulisan agak ke bawah */
+}
+
+.txt-the-wedding {
+    font-family: var(--font-sans);
+    letter-spacing: 2px;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+}
+
+.txt-main-names {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.txt-dear {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-style: italic;
+    margin-top: 5px;
+}
+
+.txt-guest {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    border-bottom: none; /* Garis bawah dihapus */
+    display: inline-block;
+}
+
+.btn-open {
+    background: var(--maroon);
+    color: white;
+    border: none; /* Menghapus border garis biasa */
+    padding: 10px 35px;
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 50px;
+    
+    /* Efek Balok Nyata (3D) */
+    box-shadow: 0 6px #4d0b0b; /* Bayangan tebal di bawah (warna maroon lebih gelap) */
+    position: relative;
+    transition: all 0.1s;
+    outline: none;
+}
+
+/* Efek saat tombol ditekan (seperti membal) */
+.btn-open:active {
+    box-shadow: 0 2px #4d0b0b; /* Bayangan menipis */
+    transform: translateY(4px); /* Tombol turun ke bawah */
+}
+
+        /* SLIDE 2: COUNTDOWN (KEMBALI KE ASLI) */
+        .slideshow-box { position: absolute; inset: 0; z-index: 1; }
+        .bg-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; animation: slideFade 12s infinite ease-in-out; }
+        .s1 { background-image: url('https://weak-bronze-n4epjtr5co.edgeone.app/1768724985773_2.jpg'); animation-delay: 0s; }
+        .s2 { background-image: url('https://spectacular-copper-ozgrusa3vr.edgeone.app/1768724888481_2.jpg'); animation-delay: 4s; }
+        .s3 { background-image: url('https://adverse-orange-spudm7isax.edgeone.app/1768724843547_2.jpg'); animation-delay: 8s; }
+        @keyframes slideFade { 0%, 100% { opacity: 0; } 10%, 33% { opacity: 1; } 43% { opacity: 0; } }
+        .overlay-2 { position: absolute; inset: 0; background: rgba(0,0,0,0.5); z-index: 2; }
+        .content-slide2 { position: relative; z-index: 10; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; padding-bottom: 10%; color: white; }
+        .countdown-wrap { display: flex; gap: 8px; margin-top: 15px; }
+        .cd-item { background: rgba(255,255,255,0.2); backdrop-filter: blur(5px); padding: 8px; border-radius: 5px; min-width: 60px; text-align: center; border: 1px solid rgba(255,255,255,0.3); }
+        .cd-item span { display: block; font-size: 1.1rem; font-weight: bold; }
+        .cd-item small { display: block; font-size: 0.55rem; text-transform: uppercase; margin-top: 2px; }
+
+        /* SLIDE 4: PROFILE */
+        /* Update Bagian Profil: Menghapus Slideshow */
+.section-profile { 
+    width: 100%; 
+    background-color: var(--maroon); 
+    padding: 60px 0; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 40px; 
+    position: relative; 
+}
+
+.photo-frame { 
+    width: 80%; 
+    height: 350px; 
+    border: 6px solid white; 
+    position: relative; 
+    overflow: hidden; 
+    z-index: 10; 
+    margin: 0 auto; /* Memastikan frame di tengah */
+    border-radius: 20px; /* Sudut melengkung */
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    /* Mengatur posisi agar wajah (bagian atas foto) tetap terlihat */
+    background-position: center 20%; 
+}
+        
+        .section-profile {
+    overflow: hidden; /* Kunci layar agar tidak meluber saat animasi jalan */
+    padding: 50px 0;
+}
+
+.flower-p {
+    position: absolute;
+    width: 120px;
+    z-index: 100;
+    top: -40px;
+    cursor: grab;
+    touch-action: none; /* Penting: mencegah scroll layar saat bunga ditarik */
+}
+
+.profile-info {
+    width: 100%;
+    text-align: center; /* Ini yang membuat tulisan ke tengah */
+    padding: 20px 10px;
+    color: white;
+}
+
+.profile-info h3 {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    width: 100%; /* Memastikan area nama selebar layar */
+}
+
+.profile-info p {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    width: 100%;
+}
+
+.social-links {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/* Update Tombol Lihat Lokasi */
+.btn-custom {
+    display: inline-block;
+    margin-top: 15px;
+    text-decoration: none;
+    background: white; /* Warna dasar tombol */
+    color: var(--maroon); /* Warna teks tombol */
+    padding: 10px 25px;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 50px; /* Bentuk lonjong */
+    
+    /* Efek Balok Nyata (3D) */
+    box-shadow: 0 4px #d1d1d1; 
+    position: relative;
+    transition: all 0.1s;
+}
+
+/* Efek saat tombol ditekan */
+.btn-custom:active {
+    box-shadow: 0 2px #d1d1d1;
+    transform: translateY(2px);
+}
+
+        /* SLIDE 5: GALLERY */
+        .combined-section { width: 100%; background-color: var(--maroon); margin-top: -2px; }
+        .gallery-container { width: 100%; overflow: hidden; }
+        .gallery-track { display: flex; width: max-content; }
+        .gallery-item { width: 300px; height: 180px; flex-shrink: 0; background-size: cover; background-position: center 65%; border: 1px solid white; }
+        .section-event { width: 100%; padding: 40px 15px; }
+        .event-card { width: 100%; border: 1px solid rgba(255,255,255,0.6); border-radius: 20px; padding: 40px 20px; color: white; text-align: center; }
+        
+        /* Slide dibuat sangat pendek (persegi panjang tipis) */
+.section-quote {
+    width: 100%;
+    padding: 20px 0; /* Jarak atas bawah sangat sedikit agar slide kecil */
+    background-color: var(--cream);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: auto; /* Slide tidak lagi satu layar penuh */
+}
+
+/* Tulisan dibuat kecil dan lebar ke samping */
+.quote-text {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: #444;
+    line-height: 1.4;
+    margin-bottom: 5px;
+    padding: 0 20px; /* Padding samping sedikit saja agar tulisan bisa melebar */
+    max-width: 90%;  /* Memberikan ruang tulisan untuk memanjang ke samping */
+    font-size: 0.75rem; /* Ukuran tulisan diperkecil (kecil saja) */
+    text-align: center;
+}
+
+/* Ornamen juga dibuat lebih kecil agar serasi */
+.ornament-divider {
+    width: 40px; 
+    height: 1px;
+    background: var(--maroon);
+    margin: 10px 0;
+    opacity: 0.3;
+}
+
+.quote-author {
+    font-family: var(--font-sans);
+    font-weight: bold;
+    color: var(--maroon);
+    font-size: 0.6rem; /* Ukuran sumber/author diperkecil */
+    letter-spacing: 1px;
+}
+
+/* Update Section Gallery dengan Background Foto */
+.section-gallery-grid {
+    padding: 40px 5px;
+    position: relative;
+    /* Menggunakan background image dengan overlay transparan */
+    background-image: linear-gradient(rgba(252, 250, 247, 0.50), rgba(252, 250, 247, 0.50)), 
+                      url('https://courageous-azure-crkcs0802s.edgeone.app/IMG-20260119-WA0002.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Memberikan efek parallax saat di-scroll */
+    text-align: center;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* jadi 2 kolom */
+    gap: 4px;
+    margin-top: 25px;
+    position: relative;
+    z-index: 2;
+}
+
+.grid-item{
+    aspect-ratio: 3 / 4;
+    background-size: cover;
+    background-position: center;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1.5px solid white;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+
+    opacity: 0;
+    transform: translateY(80px) scale(0.95);
+
+    transition:
+        transform 1s cubic-bezier(.22,1,.36,1),
+        opacity 1s ease;
+}
+
+.grid-item.show{
+    opacity:1;
+    transform: translateY(0) scale(1);
+}
+
+/* hover lebih elegan */
+.grid-item:hover{
+    transform: scale(1.05);
+}
+
+/* LIGHTBOX (Tampilan Perbesar) */
+#lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none; /* Sembunyi secara default */
+    align-items: center;
+    justify-content: center;
+    background: rgba(252, 250, 247, 0.85); /* Background cream transparan agar belakang tetap terlihat */
+    backdrop-filter: blur(5px);
+}
+
+.lightbox-content {
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lightbox-img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.btn-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--maroon);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.prev { left: -50px; }
+.next { right: -50px; }
+
+.btn-close {
+    margin-top: 20px;
+    background: var(--maroon);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+}
+/* SLIDE WEDDING GIFT - REVISI MAROON */
+.section-gift {
+    width: 100%;
+    padding: 60px 20px;
+    background-color: var(--maroon); /* Latar belakang Maroon */
+    text-align: center;
+    color: white;
+}
+
+.gift-intro {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    margin-bottom: 40px;
+    width: 100%; /* Melebar ke samping */
+    max-width: 400px;
+    padding: 0 15px;
+}
+
+.gift-cards-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Jarak antar kartu agar tidak bertumpukan */
+}
+
+.bank-card {
+    width: 100%;
+    max-width: 320px;
+    background: rgba(255, 255, 255, 0.1); /* Efek kaca transparan */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 20px;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    text-align: left;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card-logo {
+    height: 20px;
+    filter: brightness(0) invert(1); /* Membuat logo jadi putih */
+}
+
+.card-number-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.card-number {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.btn-copy {
+    background: white;
+    color: var(--maroon);
+    border: none;
+    padding: 5px 12px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.2s;
+}
+
+.btn-copy:active {
+    transform: scale(0.9);
+}
+
+.card-holder {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+/* SECTION RSVP & UCAPAN */
+.section-rsvp {
+    width: 100%;
+    padding: 60px 20px;
+    background-color: var(--cream);
+    text-align: center;
+}
+
+.rsvp-form {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    margin-bottom: 40px;
+}
+
+.rsvp-form input, .rsvp-form select, .rsvp-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+}
+
+.btn-send {
+    background: var(--maroon);
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 4px #4d0b0b;
+}
+
+.btn-send:active {
+    box-shadow: 0 2px #4d0b0b;
+    transform: translateY(2px);
+}
+
+/* Kotak Ucapan (Buku Tamu) */
+.wish-box {
+    max-height: 400px;
+    overflow-y: auto;
+    text-align: left;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 15px;
+    border: 1px solid #eee;
+}
+
+.wish-item {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border-left: 4px solid var(--maroon);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+}
+
+.wish-item h4 {
+    font-family: var(--font-serif);
+    font-size: 0.9rem;
+    color: var(--maroon);
+    margin-bottom: 5px;
+}
+
+.wish-item p {
+    font-size: 0.75rem;
+    color: #555;
+    line-height: 1.4;
+}
+
+.wish-item small {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.6rem;
+    color: #999;
+    
+}/* SLIDE PENUTUP - MODERN ELEGANT */
+.section-thanks {
+    width: 100%;
+    height: 80vh;
+    background-image: url('https://yeasty-indigo-rlefitgqz4.edgeone.app/ebef8c7646fa7248e715aa17ddf9f0dd.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Overlay gelap agar background lebih menyatu */
+.section-thanks::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.thanks-box {
+    width: 80%;
+    max-width: 350px;
+    background-color: rgba(122, 18, 18, 0.9); /* Maroon Pekat */
+    padding: 50px 30px;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Garis bingkai tipis */
+    border-radius: 4px; /* Sudut kotak lebih tegas agar elegan */
+    text-align: center;
+    color: white;
+    z-index: 2;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.thanks-text {
+    font-family: var(--font-serif);
+    font-size: 0.8rem;
+    font-style: italic;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.thanks-names {
+    font-family: var(--font-nama);
+    font-size: 2rem;
+    margin-top: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.ornament-thanks {
+    width: 60px;
+    height: 1px;
+    background: white;
+    margin: 20px auto;
+    opacity: 0.6;
+}
+/* ANIMASI TIMBUL GALERI */
+.grid-item{
+    opacity: 0;
+    transform: translateY(60px) scale(0.9);
+    transition: all 0.8s ease;
+}
+
+.grid-item.show{
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* efek hover biar hidup */
+.grid-item:hover{
+    transform: scale(1.05);
+}
+    </style>
+    <!-- Open Graph (Preview saat share link) -->
+<meta property="og:title" content="The Wedding of Anggar & Erni">
+<meta property="og:description" content="Undangan Pernikahan Anggar & Erni - 27 Maret 2026">
+<meta property="og:image" content="https://courageous-azure-crkcs0802s.edgeone.app/IMG-20260119-WA0002.jpg">
+<meta property="og:url" content="https://domain-undangan-anda.com">
+<meta property="og:type" content="website">
+
+<!-- Untuk WhatsApp -->
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+</head>
+<body>
+
+    <div class="container">
+        <section class="section" id="slide-1">
+    <div class="main-frame">
+        <div class="cover-content">
+            <p class="txt-the-wedding">The Wedding of</p>
+            <h1 class="txt-main-names">Anggar & Erni</h1>
+            <p class="txt-dear">Dear</p>
+            <h2 class="txt-guest" id="guest-name-display">Nama Tamu</h2>
+            <div>
+                <button class="btn-open" onclick="openInvitation()">Buka Undangan</button>
+            </div>
+        </div>
+    </div>
+</section>
+            
+
+        <section class="section" id="slide-2">
+            <div class="slideshow-box">
+                <div class="bg-slide s1"></div><div class="bg-slide s2"></div><div class="bg-slide s3"></div>
+                <div class="overlay-2"></div>
+            </div>
+            <div class="content-slide2">
+                <h2 style="letter-spacing:4px;">27.03.2026</h2>
+                <h1 style="font-family:var(--font-nama); font-size:3.5rem;">Anggar & Erni</h1>
+                <div class="countdown-wrap">
+                    <div class="cd-item"><span id="days">00</span><small>Hari</small></div>
+                    <div class="cd-item"><span id="hours">00</span><small>Jam</small></div>
+                    <div class="cd-item"><span id="mins">00</span><small>Menit</small></div>
+                    <div class="cd-item"><span id="secs">00</span><small>Detik</small></div>
+                </div>
+            </div>
+        </section>
+
+<section class="section-quote">
+    <div class="ornament-divider"></div>
+    
+    <p class="quote-text">
+        "Di antara tanda-tanda (kebesaran)-Nya ialah bahwa Dia menciptakan pasangan-pasangan untukmu dari (jenis) dirimu sendiri agar kamu merasa tenteram kepadanya. Dia menjadikan di antaramu rasa cinta dan kasih sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."
+    </p>
+    
+    <p class="quote-author">QS. AR-RUM: 21</p>
+    <div class="ornament-divider"></div>
+</section>
+
+        <section class="section-profile">
+    <div class="profile-card" data-aos="fade-right" data-aos-duration="1200">
+        <div style="position:relative;">
+            <img src="https://welcome-emerald-hevflvzwrt.edgeone.app/png-transparent-red-flowers-red-flowers-red-clipart-removebg-preview.png" class="flower-p draggable-flower" style="right:-10px;">
+            <div class="photo-frame">
+                <div class="profile-img" style="background-image: url('https://very-yellow-ojohv50y0o.edgeone.app/687cf280-f452-11f0-b671-bdc5906311d2_2.jpg');"></div>
+            </div>
+        </div>
+        <div class="profile-info">
+            <h3>Erni Anggraeni, S.H.</h3>
+            <p>Putri dari Bapak Randi & Ibu Rumsah</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/nii.nggra" target="_blank" class="btn-custom"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@nii.nggraaaaa" target="_blank" class="btn-custom"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="profile-card" data-aos="fade-left" data-aos-duration="1200">
+        <div style="position:relative;">
+            <img src="https://welcome-emerald-hevflvzwrt.edgeone.app/png-transparent-red-flowers-red-flowers-red-clipart-removebg-preview.png" class="flower-p draggable-flower" style="left:-10px; transform:scaleX(-1);">
+            <div class="photo-frame">
+                <div class="profile-img" style="background-image: url('https://devoted-magenta-mtb6xph5s8.edgeone.app/c8ada9e0-f454-11f0-87a0-8504b39c1509_4.jpg');"></div>
+            </div>
+        </div>
+        <div class="profile-info">
+            <h3>Serda Anggar Gumarang W.</h3>
+            <p>Putra dari Bapak Yatimin, S.Pd & Ibu Umi</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/mas_ompay22_" target="_blank" class="btn-custom"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@nii.nggraaaaa" target="_blank" class="btn-custom"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <div class="combined-section">
+            <div class="gallery-container">
+                <div class="gallery-track" id="track-top">
+                    <div class="gallery-item" style="background-image:url('https://weak-bronze-n4epjtr5co.edgeone.app/1768724985773_2.jpg')"></div>
+                    <div class="gallery-item" style="background-image:url('https://adverse-orange-spudm7isax.edgeone.app/1768724843547_2.jpg')"></div>
+                    <div class="gallery-item" style="background-image:url('https://spectacular-copper-ozgrusa3vr.edgeone.app/1768724888481_2.jpg')"></div>
+                    <div class="gallery-item" style="background-image:url('https://weak-bronze-n4epjtr5co.edgeone.app/1768724985773_2.jpg')"></div>
+                    <div class="gallery-item" style="background-image:url('https://adverse-orange-spudm7isax.edgeone.app/1768724843547_2.jpg')"></div>
+                </div>
+            </div>
+            <section class="section-event">
+
+<div class="event-capsule">
+<div class="event-content">
+
+<!-- AKAD -->
+
+<div class="event-box">
+
+<h3>Akad Nikah</h3>
+
+<p>Jumat</p>
+<p style="font-size:40px; font-weight:bold;">27</p>
+<p>Maret 2026</p>
+
+<p style="margin-top:10px;">
+Pukul 10.00 - 11.00 WIT
+</p>
+
+<p style="font-size:22px; margin-top:15px;">📍</p>
+
+<p>Bertempat di :</p>
+
+<p style="font-size:0.85rem; opacity:0.9;">
+SP 2 Jalur 7 Kampung Desay,  
+Prafi-Manokwari, Papua Barat
+</p>
+
+<a href="https://maps.app.goo.gl/X7TfYFBFnmeUKdz59"
+target="_blank"
+class="btn-custom"
+style="margin-top:15px;">
+LIHAT LOKASI
+</a>
+
+</div>
+
+<div class="event-divider"></div>
+
+<!-- RESEPSI -->
+
+<div class="event-box">
+
+<h3>Resepsi</h3>
+
+<p>Jumat</p>
+<p style="font-size:40px; font-weight:bold;">27</p>
+<p>Maret 2026</p>
+
+<p style="margin-top:10px;">
+Pukul 11.00 WIT - Selesai
+</p>
+
+<p style="font-size:22px; margin-top:15px;">📍</p>
+
+<p>Bertempat di :</p>
+
+<p style="font-size:0.85rem; opacity:0.9;">
+SP 2 Jalur 7 Kampung Desay,  
+Prafi-Manokwari, Papua Barat
+</p>
+
+<a href="https://maps.app.goo.gl/X7TfYFBFnmeUKdz59"
+target="_blank"
+class="btn-custom"
+style="margin-top:15px;">
+LIHAT LOKASI
+</a>
+
+</div>
+
+</div>
+</div>
+
+</section>
+
+            <div class="gallery-container">
+                <div class="gallery-track" id="track-bottom">
+                    <div class="gallery-item" style="background-image:url('https://adverse-orange-spudm7isax.edgeone.app/1768724843547_2.jpg')"></div>
+                    <div class="gallery-item" style="background-image:url('https://weak-bronze-n4epjtr5co.edgeone.app/1768724985773_2.jpg')"></div>
+                    <div class="gallery-item" style="background-image:url('https://spectacular-copper-ozgrusa3vr.edgeone.app/1768724888481_2.jpg')"></div>
+                    <div class="gallery-item" style="background-image:url('https://adverse-orange-spudm7isax.edgeone.app/1768724843547_2.jpg')"></div>
+                    <div class="gallery-item" style="background-image:url('https://weak-bronze-n4epjtr5co.edgeone.app/1768724985773_2.jpg')"></div>
+                </div>
+            </div>
+        
+    <section class="section-gallery-grid">
+    <div style="text-align: center; margin-bottom: 35px; position: relative; z-index: 5;">
+        <h2 data-aos="fade-down" data-aos-duration="1000" 
+            style="font-family: 'Great Vibes', cursive; font-size: 3.2rem; color: #7a1212; margin-bottom: 5px;">
+            Our Gallery
+        </h2>
+        <div data-aos="zoom-in" data-aos-delay="400" 
+             style="width: 50px; height: 2px; background: #7a1212; margin: 0 auto 10px;">
+        </div>
+        <p data-aos="fade-up" data-aos-delay="600" 
+           style="font-family: 'Montserrat', sans-serif; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: #666;">
+           Sweet Memories
+        </p>
+    </div>
+
+    <div class="gallery-grid">
+        <div class="grid-item" onclick="openLightbox(0)" style="background-image: url('https://isolated-salmon-xvnmc2sofl.edgeone.app/1768907338731.jpg')"></div>
+        <div class="grid-item" data-aos="fade-up"    onclick="openLightbox(1)" style="background-image: url('https://still-azure-zyxtrp1apg.edgeone.app/1768907385979.jpg')"></div>
+        <div class="grid-item" data-aos="fade-left"  onclick="openLightbox(2)" style="background-image: url('https://agricultural-olive-zw5mznqere.edgeone.app/1768907367675.jpg')"></div>
+        
+        <div class="grid-item" data-aos="fade-right" data-aos-delay="100" onclick="openLightbox(3)" style="background-image: url('https://vocational-amaranth-dsanan02yi.edgeone.app/1768907079093.jpg')"></div>
+        <div class="grid-item" data-aos="fade-up"    data-aos-delay="100" onclick="openLightbox(4)" style="background-image: url('https://tasty-gold-r35ruivsef.edgeone.app/1768907141723.jpg')"></div>
+        <div class="grid-item" data-aos="fade-left"  data-aos-delay="100" onclick="openLightbox(5)" style="background-image: url('https://keen-aqua-cwdvrffj9n.edgeone.app/1768907112847.jpg')"></div>
+        
+        <div class="grid-item" data-aos="fade-right" data-aos-delay="150" onclick="openLightbox(6)" style="background-image: url('https://bad-scarlet-kkcryaoyct.edgeone.app/1768907221939.jpg')"></div>
+        <div class="grid-item" data-aos="fade-up"    data-aos-delay="150" onclick="openLightbox(7)" style="background-image: url('https://forward-lime-awxpkc6tnu.edgeone.app/1768907302924.jpg')"></div>
+        <div class="grid-item" data-aos="fade-left"  data-aos-delay="150" onclick="openLightbox(8)" style="background-image: url('https://minor-aquamarine-szjsfckmd1.edgeone.app/1768907266879.jpg')"></div>
+        
+        <div class="grid-item" data-aos="fade-right" data-aos-delay="200" onclick="openLightbox(9)" style="background-image: url('https://weak-bronze-n4epjtr5co.edgeone.app/1768724985773_2.jpg')"></div>
+        <div class="grid-item" data-aos="fade-up"    data-aos-delay="200" onclick="openLightbox(10)" style="background-image: url('https://adverse-orange-spudm7isax.edgeone.app/1768724843547_2.jpg')"></div>
+        <div class="grid-item" data-aos="fade-left"  data-aos-delay="200" onclick="openLightbox(11)" style="background-image: url('https://spectacular-copper-ozgrusa3vr.edgeone.app/1768724888481_2.jpg')"></div>
+    </div>
+</section>
+
+
+<div id="lightbox">
+    <div class="lightbox-content">
+        <button class="btn-nav prev" onclick="changeImg(-1)">&#10094;</button>
+        <img src="" id="lightbox-img" class="lightbox-img">
+        <button class="btn-nav next" onclick="changeImg(1)">&#10095;</button>
+        <button class="btn-close" onclick="closeLightbox()">KEMBALI</button>
+    </div>
+</div>
+
+    <section class="section-gift">
+    <h2 style="font-family: var(--font-nama); font-size: 2.8rem; margin-bottom: 15px; color: #fcfaf7;">Wedding Gift</h2>
+    <p class="gift-intro">
+        Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika memberi adalah ungkapan tanda kasih Anda, Anda dapat memberi kado secara cashless.
+    </p>
+
+    <div class="gift-cards-container">
+        <div class="bank-card">
+            <div class="card-header">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg" class="card-logo" alt="BCA">
+                <span style="font-size: 0.7rem; font-weight: bold; opacity: 0.7;">BANK TRANSFER</span>
+            </div>
+            <div class="card-number-wrapper">
+                <span class="card-number" id="norek1">6275266411</span>
+                <button class="btn-copy" onclick="copyText('6275266411')">SALIN</button>
+            </div>
+            <div class="card-holder">a.n Erni Anggraeni</div>
+        </div>
+
+        <div class="bank-card">
+            <div class="card-header">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/86/Gopay_logo.svg" class="card-logo" alt="Gopay">
+                <span style="font-size: 0.7rem; font-weight: bold; opacity: 0.7;">E-WALLET</span>
+            </div>
+            <div class="card-number-wrapper">
+                <span class="card-number" id="norek2">085889500966</span>
+                <button class="btn-copy" onclick="copyText('085889500966')">SALIN</button>
+            </div>
+            <div class="card-holder">a.n Erni Anggraeni</div>
+        </div>
+
+        <div class="bank-card">
+            <div class="card-header">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/86/Gopay_logo.svg" class="card-logo" alt="Gopay">
+                <span style="font-size: 0.7rem; font-weight: bold; opacity: 0.7;">E-WALLET</span>
+            </div>
+            <div class="card-number-wrapper">
+                <span class="card-number" id="norek3">082248506468</span>
+                <button class="btn-copy" onclick="copyText('082248506468')">SALIN</button>
+            </div>
+            <div class="card-holder">a.n Anggar Gumarang</div>
+        </div>
+    </div>
+</section>
+<section class="section-rsvp">
+    <h2 style="font-family: var(--font-nama); color: var(--maroon); font-size: 2.5rem; margin-bottom: 20px;">Wishes</h2>
+    
+    <div class="rsvp-form">
+        <input type="text" id="guestName" placeholder="Nama Anda" required>
+        <select id="attendance">
+            <option value="Hadir">Saya Akan Hadir</option>
+            <option value="Tidak Hadir">Mohon Maaf, Tidak Bisa Hadir</option>
+        </select>
+        <textarea id="guestWish" rows="4" placeholder="Tulis ucapan & doa restu Anda..." required></textarea>
+        <button class="btn-send" onclick="submitWish()">KIRIM UCAPAN</button>
+    </div>
+
+    <h3 style="font-family: var(--font-serif); font-size: 1rem; margin-bottom: 15px; color: #444;">Buku Tamu (<span id="count">0</span>)</h3>
+    <div class="wish-box" id="wishContainer">
+        </div>
+</section>
+<section class="section-thanks">
+    <div class="thanks-box">
+        <div class="ornament-thanks"></div>
+        
+        <p class="thanks-text">
+            Atas kehadiran dan do'a restu dari Bapak/Ibu/Saudara/I sekalian, <br>
+            kami mengucapkan Terimakasih.
+        </p>
+        
+        <h1 class="thanks-names">Anggar & Erni</h1>
+        
+        <div class="ornament-thanks"></div>
+    </div>
+</section>
+    <audio id="bgm" loop preload="auto">
+    <source src="https://near-moccasin-ajf6irtbmw.edgeone.app/original%20sound%20-%20musicjatim.official_musicaldown.com_1768930505.mp3" type="audio/mpeg">
+</audio>
+
+    <script>
+      // Fungsi untuk mengambil nama dari URL
+function getGuestName() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const guestName = urlParams.get('to'); // Mengambil teks setelah '?to='
+
+    if (guestName) {
+        // Mengganti teks 'Nama Tamu' dengan nama dari URL
+        // .replace(/\+/g, ' ') berfungsi mengubah tanda plus menjadi spasi
+        document.getElementById('guest-name-display').innerText = guestName.replace(/\+/g, ' ');
+    }
+}
+
+// Jalankan fungsi saat halaman dimuat
+window.addEventListener('DOMContentLoaded', getGuestName);
+
+        function openInvitation() {
+    document.getElementById('bgm').play().catch(e => {});
+    document.getElementById('slide-2').scrollIntoView({ behavior: 'smooth' });
+}
+function openInvitation() {
+    const audio = document.getElementById('bgm');
+    
+    // Memberitahu browser untuk menyiapkan file
+    audio.load();
+    
+    // Menjalankan audio
+    var playPromise = audio.play();
+
+    if (playPromise !== undefined) {
+        playPromise.then(_ => {
+            console.log("Playback started!");
+        }).catch(error => {
+            // Jika gagal, coba lagi saat user menyentuh layar pertama kali
+            console.log("Autoplay dicegah, menunggu interaksi user.");
+            document.body.addEventListener('touchstart', function() {
+                audio.play();
+            }, { once: true });
+        });
+    }
+
+    document.getElementById('slide-2').scrollIntoView({ behavior: 'smooth' });
+}
+        const weddingDate = new Date("maret 27, 2026 00:00:00").getTime();
+        setInterval(function() {
+            const now = new Date().getTime();
+            const diff = weddingDate - now;
+            if (diff > 0) {
+                document.getElementById('days').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+                document.getElementById('hours').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+                document.getElementById('mins').innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+                document.getElementById('secs').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+            }
+        }, 1000);
+        window.addEventListener("DOMContentLoaded", function(){
+
+    const trackTop = document.getElementById("track-top");
+    const trackBottom = document.getElementById("track-bottom");
+
+    // duplikat isi supaya panjang
+    trackTop.innerHTML += trackTop.innerHTML;
+    trackBottom.innerHTML += trackBottom.innerHTML;
+
+});
+        window.addEventListener('scroll', function() {
+    const scrollValue = window.scrollY;
+    
+    const trackTop = document.getElementById('track-top');
+    const trackBottom = document.getElementById('track-bottom');
+
+    if (trackTop && trackBottom) {
+        // TRACK ATAS: Geser ke KANAN
+        // Kita mulai dari -500px agar saat scroll, gambar bergerak masuk ke kanan
+        let moveRight = (scrollValue * 0.3) - 900; 
+        trackTop.style.transform = `translateX(${moveRight}px)`;
+        
+        // TRACK BAWAH: Geser ke KIRI
+        // Kita mulai dari 0, lalu ditarik ke kiri dengan nilai negatif
+        let moveLeft = -(scrollValue * 0.3);
+        trackBottom.style.transform = `translateX(${moveLeft}px)`;
+    }
+});
+// Memperbaiki daftar gambar agar sesuai dengan tampilan galeri
+const galleryImages = [
+    'https://isolated-salmon-xvnmc2sofl.edgeone.app/1768907338731.jpg',
+    'https://still-azure-zyxtrp1apg.edgeone.app/1768907385979.jpg',
+    'https://agricultural-olive-zw5mznqere.edgeone.app/1768907367675.jpg',
+    'https://vocational-amaranth-dsanan02yi.edgeone.app/1768907079093.jpg',
+    'https://tasty-gold-r35ruivsef.edgeone.app/1768907141723.jpg',
+    'https://keen-aqua-cwdvrffj9n.edgeone.app/1768907112847.jpg',
+    'https://bad-scarlet-kkcryaoyct.edgeone.app/1768907221939.jpg',
+    'https://forward-lime-awxpkc6tnu.edgeone.app/1768907302924.jpg',
+    'https://minor-aquamarine-szjsfckmd1.edgeone.app/1768907266879.jpg',
+    'https://weak-bronze-n4epjtr5co.edgeone.app/1768724985773_2.jpg',
+    'https://adverse-orange-spudm7isax.edgeone.app/1768724843547_2.jpg',
+    'https://spectacular-copper-ozgrusa3vr.edgeone.app/1768724888481_2.jpg'
+];
+
+function openLightbox(index) {
+    currentImgIndex = index;
+    document.getElementById('lightbox-img').src = galleryImages[currentImgIndex];
+    document.getElementById('lightbox').style.display = 'flex';
+}
+
+function closeLightbox() {
+    document.getElementById('lightbox').style.display = 'none';
+}
+
+function changeImg(step) {
+    currentImgIndex += step;
+    if (currentImgIndex >= galleryImages.length) currentImgIndex = 0;
+    if (currentImgIndex < 0) currentImgIndex = galleryImages.length - 1;
+    document.getElementById('lightbox-img').src = galleryImages[currentImgIndex];
+}
+function copyText(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        alert("Nomor berhasil disalin: " + text);
+    }).catch(err => {
+        console.error('Gagal menyalin: ', err);
+    });
+}
+// Konfigurasi Database Anda
+const firebaseConfig = {
+    apiKey: "ISI_API_KEY_DARI_FIREBASE_SETTINGS",
+    authDomain: "undangananggarerni-9bfcd.firebaseapp.com",
+    databaseURL: "https://undangananggarerni-9bfcd-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "undangananggarerni-9bfcd",
+    storageBucket: "undangananggarerni-9bfcd.appspot.com",
+    messagingSenderId: "ISI_SENDER_ID",
+    appId: "ISI_APP_ID"
+};
+
+// Inisialisasi Firebase
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
+// Fungsi Mengirim Ucapan ke Cloud (Agar sinkron di semua HP)
+function submitWish() {
+    const name = document.getElementById('guestName').value;
+    const attend = document.getElementById('attendance').value;
+    const wish = document.getElementById('guestWish').value;
+
+    if (name === "" || wish === "") {
+        alert("Mohon isi nama dan ucapan Anda.");
+        return;
+    }
+
+    const newWish = {
+        name: name,
+        attend: attend,
+        wish: wish,
+        time: new Date().toLocaleString('id-ID')
+    };
+
+    // Simpan ke database online
+    database.ref('wishes_v2').push(newWish)
+        .then(() => {
+            document.getElementById('guestName').value = "";
+            document.getElementById('guestWish').value = "";
+            alert("Terima kasih! Ucapan Anda sudah masuk.");
+        });
+}
+
+// Fungsi Menampilkan Ucapan secara Real-Time
+function displayWishes() {
+    const container = document.getElementById('wishContainer');
+    const countSpan = document.getElementById('count');
+
+    // Mengambil data dari cloud setiap kali ada update
+    database.ref('wishes_v2').on('value', (snapshot) => {
+        const data = snapshot.val();
+        container.innerHTML = "";
+        
+        if (data) {
+            const keys = Object.keys(data).reverse(); // Pesan terbaru di atas
+            countSpan.innerText = keys.length;
+
+            keys.forEach(key => {
+                const item = data[key];
+                const div = document.createElement('div');
+                div.className = 'wish-item';
+                div.innerHTML = `
+                    <h4>${item.name} <span style="font-size:0.6rem; color:#888;">- ${item.attend}</span></h4>
+                    <p>"${item.wish}"</p>
+                    <small>${item.time}</small>
+                `;
+                container.appendChild(div);
+            });
+        } else {
+            countSpan.innerText = "0";
+            container.innerHTML = "<p style='text-align:center;'>Belum ada ucapan.</p>";
+        }
+    });
+}
+
+// Jalankan saat halaman dibuka
+window.addEventListener('DOMContentLoaded', () => {
+    displayWishes();
+});
+
+// Fungsi untuk membuat elemen bisa di-drag
+function makeDraggable(element) {
+    let isDragging = false;
+    let startX, startLeft;
+
+    // Event untuk Handphone (Touch)
+    element.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        startX = e.touches[0].clientX;
+        startLeft = element.offsetLeft;
+        element.style.cursor = 'grabbing';
+    });
+
+    document.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        
+        let touch = e.touches[0];
+        let moveX = touch.clientX - startX;
+        
+        // Update posisi horizontal bunga
+        element.style.left = (startLeft + moveX) + 'px';
+        element.style.right = 'auto'; // Reset right agar left yang bekerja
+    }, { passive: false });
+
+    document.addEventListener('touchend', () => {
+        isDragging = false;
+        element.style.cursor = 'grab';
+    });
+}
+
+// Jalankan fungsi untuk semua elemen dengan class .flower-p
+document.querySelectorAll('.flower-p').forEach(flower => {
+    makeDraggable(flower);
+});
+// Inisialisasi Animasi
+AOS.init({ once: false });
+
+// Fungsi Drag bunga
+document.querySelectorAll('.draggable-flower').forEach(flower => {
+    let isDragging = false;
+    let startX, startLeft;
+
+    flower.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        startX = e.touches[0].clientX;
+        startLeft = flower.offsetLeft;
+    });
+
+    document.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        let moveX = e.touches[0].clientX - startX;
+        flower.style.left = (startLeft + moveX) + 'px';
+        flower.style.right = 'auto';
+    }, { passive: false });
+
+    document.addEventListener('touchend', () => isDragging = false);
+});
+function openInvitation() {
+    const audio = document.getElementById('bgm');
+    
+    // Memastikan audio ter-load dan mulai diputar
+    audio.play().then(() => {
+        console.log("Musik berhasil diputar");
+    }).catch(error => {
+        console.log("Gagal memutar musik: ", error);
+        // Jika gagal, coba trigger sekali lagi saat user scroll
+    });
+
+    // Scroll ke halaman berikutnya
+    document.getElementById('slide-2').scrollIntoView({ behavior: 'smooth' });
+}
+// Animasi timbul gallery
+
+const galleryItems = document.querySelectorAll(".grid-item");
+
+const observer = new IntersectionObserver((entries)=>{
+
+    entries.forEach((entry,index)=>{
+
+        if(entry.isIntersecting){
+
+            setTimeout(()=>{
+                entry.target.classList.add("show");
+            }, index * 120);
+
+        }
+
+    });
+
+},{ threshold:0.2 });
+
+galleryItems.forEach(item=>{
+    observer.observe(item);
+});
+    </script>
+</body>
+</html>
